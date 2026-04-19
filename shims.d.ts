@@ -15,22 +15,6 @@ declare namespace bluetooth {
     function startUartService(): void;
 
     /**
-     * Writes to the Bluetooth UART service buffer.
-     */
-    //% help=bluetooth/uart-write-string weight=80
-    //% blockId=bluetooth_uart_write block="bluetooth uart|write string %data" blockGap=8
-    //% parts="bluetooth" shim=bluetooth::uartWriteString advanced=true
-    function uartWriteString(data: string): void;
-
-    /**
-     *  Reads from the Bluetooth UART service buffer until the delimiter.
-     */
-    //% help=bluetooth/uart-read-until weight=75
-    //% blockId=bluetooth_uart_read block="bluetooth uart|read until %del=serial_delimiter_conv"
-    //% parts="bluetooth" shim=bluetooth::uartReadUntil advanced=true
-    function uartReadUntil(del: string): string;
-
-    /**
      * Sends a buffer of data via Bluetooth UART
      */
     //% shim=bluetooth::uartWriteBuffer
@@ -67,15 +51,6 @@ declare namespace bluetooth {
     //% blockId=bluetooth_on_disconnected block="on bluetooth disconnected"
     //% parts="bluetooth" shim=bluetooth::onBluetoothDisconnected
     function onBluetoothDisconnected(body: () => void): void;
-
-    /**
-     * Sets the BLE GAP device name advertised over Bluetooth.
-     * Name must start with "Claude" for Claude Desktop Hardware Buddy to connect.
-     * @param name the device name to advertise, eg: "Claude mini"
-     */
-    //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
-    //% parts=bluetooth weight=6 advanced=true shim=bluetooth::setDeviceName
-    function setDeviceName(name: string): void;
 }
 
 // Auto-generated. Do not edit. Really.
