@@ -2,7 +2,7 @@
 /**
  * Support for additional Bluetooth services.
  */
-//% color=#007EF4 weight=96 icon="\uf294"
+//% color=#0082FB weight=96 icon="\uf294"
 namespace bluetooth {
     export let NEW_LINE = "\r\n";
 
@@ -14,6 +14,17 @@ namespace bluetooth {
         return;
     }
     console.addListener(function (_pri, msg) { __log(_pri, msg) });
+
+    /**
+     * Sets the BLE GAP device name. Call before startUartService().
+     * Name must start with "Claude" for Claude Desktop Hardware Buddy to connect.
+     * @param name the device name to advertise, eg: "Claude mini"
+     */
+    //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
+    //% parts=bluetooth weight=6 advanced=true shim=bluetooth::setDeviceName
+    export function setDeviceName(name: string): void {
+        // simulator stub — no-op in browser
+    }
 
     /**
     *  Writes to the Bluetooth UART service buffer. From there the data is transmitted over Bluetooth to a connected device.

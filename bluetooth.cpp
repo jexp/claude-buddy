@@ -152,7 +152,7 @@ namespace bluetooth {
     }
 
     /**
-     * Register code to run when the micro:bit is connected to over Bluetooth
+     * Register code to run when the Calliope mini is connected to over Bluetooth
      * @param body Code to run when a Bluetooth connection is established
      */
     //% help=bluetooth/on-bluetooth-connected weight=20
@@ -163,7 +163,7 @@ namespace bluetooth {
     }    
 
      /**
-     * Register code to run when a bluetooth connection to the micro:bit is lost
+     * Register code to run when a bluetooth connection to the Calliope mini is lost
      * @param body Code to run when a Bluetooth connection is lost
      */
     //% help=bluetooth/on-bluetooth-disconnected weight=19
@@ -209,6 +209,18 @@ namespace bluetooth {
         int8_t level = CALIBRATED_POWERS[power];
         uBit.bleManager.advertiseEddystoneUid((const char*)buf->data, (const char*)buf->data + 10, level, connectable);
 #endif
+    }
+
+    /**
+    * Sets the BLE GAP device name. Call before startUartService().
+    * Name must start with "Claude" for Claude Desktop Hardware Buddy to connect.
+    * @param name the device name to advertise, eg: "Claude mini"
+    */
+    //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
+    //% parts=bluetooth weight=6 advanced=true
+    //% help=bluetooth/set-device-name
+    void setDeviceName(String name) {
+        uBit.bleManager.setDeviceName(MSTR(name));
     }
 
     /**
