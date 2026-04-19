@@ -123,6 +123,15 @@ declare namespace bluetooth {
     function advertiseUidBuffer(nsAndInstance: Buffer, power: int32, connectable: boolean): void;
 
     /**
+     * Sets the BLE GAP device name. Call before startUartService().
+     * Name must start with "Claude" for Claude Desktop Hardware Buddy to connect.
+     * @param name the device name to advertise, eg: "Claude mini"
+     */
+    //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
+    //% parts=bluetooth weight=6 advanced=true shim=bluetooth::setDeviceName
+    function setDeviceName(name: string): void;
+
+    /**
      * Sets the bluetooth transmit power between 0 (minimal) and 7 (maximum).
      * @param power power level between 0 (minimal) and 7 (maximum), eg: 7.
      */

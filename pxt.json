@@ -1,7 +1,7 @@
 {
-    "name": "calliope-bluetooth",
+    "name": "claude-buddy",
     "version": "0.0.1",
-    "description": "Bluetooth services for Calliope mini — patched with setDeviceName() for Claude Desktop Hardware Buddy",
+    "description": "Connect your Calliope mini or micro:bit to Claude Desktop via Bluetooth. Approve or deny AI tool permissions with physical buttons. Compatible with Calliope mini 2/3 and micro:bit v1/v2.",
     "license": "MIT",
     "dependencies": {
         "core": "*"
@@ -11,8 +11,19 @@
         "shims.d.ts",
         "bluetooth.cpp",
         "BLEHF2Service.cpp",
-        "BLEHF2Service.h"
+        "BLEHF2Service.h",
+        "claude-buddy.ts"
     ],
+    "fileDependencies": {
+        "_locales/de/claude-buddy-strings.json": "de",
+        "_locales/fr/claude-buddy-strings.json": "fr",
+        "_locales/es/claude-buddy-strings.json": "es",
+        "_locales/nl/claude-buddy-strings.json": "nl",
+        "_locales/it/claude-buddy-strings.json": "it",
+        "_locales/pt/claude-buddy-strings.json": "pt",
+        "_locales/ja/claude-buddy-strings.json": "ja",
+        "_locales/zh-CN/claude-buddy-strings.json": "zh-CN"
+    },
     "public": true,
     "supportedTargets": [
         "calliope3",

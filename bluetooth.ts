@@ -21,9 +21,9 @@ namespace bluetooth {
      * @param name the device name to advertise, eg: "Claude mini"
      */
     //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
-    //% parts=bluetooth weight=6 advanced=true shim=bluetooth::setDeviceName
+    //% parts=bluetooth weight=6 advanced=true
     export function setDeviceName(name: string): void {
-        // simulator stub — no-op in browser
+        // simulator stub — no-op; on device the C++ shim in shims.d.ts takes over
     }
 
     /**
