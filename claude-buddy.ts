@@ -114,7 +114,7 @@ namespace claudeBuddy {
     //% block="start Claude Buddy"
     //% weight=100 group="Setup"
     export function start(): void {
-        bluetooth.setDeviceName("Claude " + (control.deviceName() || "mini"))
+        try { bluetooth.setDeviceName("Claude " + (control.deviceName() || "mini")) } catch (e) { }
         _setupHandlers()
         bluetooth.startUartService()
     }
