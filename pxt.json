@@ -4,12 +4,12 @@
     "description": "Connect your Calliope mini or micro:bit to Claude Desktop via Bluetooth. Approve or deny AI tool permissions with physical buttons. Compatible with Calliope mini 2/3 and micro:bit v1/v2.",
     "license": "MIT",
     "dependencies": {
-        "core": "*",
-        "bluetooth": "*"
+        "core": "*"
     },
     "files": [
-        "claudebuddy-shims.d.ts",
-        "setdevicename.cpp",
+        "bluetooth.ts",
+        "shims.d.ts",
+        "bluetooth.cpp",
         "claude-buddy.ts"
     ],
     "testFiles": [

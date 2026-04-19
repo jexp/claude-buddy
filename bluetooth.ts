@@ -7,15 +7,6 @@ namespace bluetooth {
     export let NEW_LINE = "\r\n";
 
     /**
-     * Internal use
-     */
-    //% shim=bluetooth::__log
-    export function __log(priority: number, msg: string) {
-        return;
-    }
-    console.addListener(function (_pri, msg) { __log(_pri, msg) });
-
-    /**
      * Sets the BLE GAP device name. Call before startUartService().
      * Name must start with "Claude" for Claude Desktop Hardware Buddy to connect.
      * @param name the device name to advertise, eg: "Claude mini"
@@ -23,11 +14,11 @@ namespace bluetooth {
     //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
     //% parts=bluetooth weight=6 advanced=true shim=bluetooth::setDeviceName
     export function setDeviceName(name: string): void {
-        // simulator stub — no-op; shim annotation routes to C++ on device
+        // simulator stub — no-op; shim routes to C++ on device
     }
 
     /**
-    *  Writes to the Bluetooth UART service buffer. From there the data is transmitted over Bluetooth to a connected device.
+    *  Writes to the Bluetooth UART service buffer.
     */
     //% help=bluetooth/uart-write-string weight=80
     //% blockId=bluetooth_uart_write block="bluetooth uart|write string %data" blockGap=8
@@ -37,23 +28,13 @@ namespace bluetooth {
     }
 
     /**
-    *  Writes to the Bluetooth UART service buffer. From there the data is transmitted over Bluetooth to a connected device.
+    *  Writes a line to the Bluetooth UART service buffer.
     */
     //% help=bluetooth/uart-write-line weight=79
     //% blockId=bluetooth_uart_line block="bluetooth uart|write line %data" blockGap=8
     //% parts="bluetooth" advanced=true
     export function uartWriteLine(data: string): void {
-        uartWriteString(data + serial.NEW_LINE);
-    }
-
-    /**
-     * Prints a numeric value to the serial
-     */
-    //% help=bluetooth/uart-write-number weight=79
-    //% weight=89 blockGap=8 advanced=true
-    //% blockId=bluetooth_uart_writenumber block="bluetooth uart|write number %value"
-    export function uartWriteNumber(value: number): void {
-        uartWriteString(value.toString());
+        uartWriteString(data + NEW_LINE);
     }
 
     /**
@@ -69,31 +50,12 @@ namespace bluetooth {
     }
 
     /**
-     *  Reads from the Bluetooth UART service buffer, returning its contents when the specified delimiter character is encountered.
+     *  Reads from the Bluetooth UART service buffer until the delimiter.
      */
     //% help=bluetooth/uart-read-until weight=75
     //% blockId=bluetooth_uart_read block="bluetooth uart|read until %del=serial_delimiter_conv"
     //% parts="bluetooth" shim=bluetooth::uartReadUntil advanced=true
     export function uartReadUntil(del: string): string {
-        // dummy implementation for simulator
         return ""
-    }
-
-    /**
-    * Advertise an Eddystone UID
-    * @param ns 4 last bytes of the namespace uid
-    * @param instance 4 last bytes of the instance uid
-    * @param power power level between 0 and 7, eg: 7
-    * @param connectable true to keep bluetooth connectable for other services, false otherwise.
-    */
-    //% blockId=eddystone_advertise_uid block="bluetooth advertise UID|namespace (bytes 6-9)%ns|instance (bytes 2-6)%instance|with power %power|connectable %connectable"
-    //% parts=bluetooth weight=12 blockGap=8
-    //% help=bluetooth/advertise-uid blockExternalInputs=1
-    //% hidden=1 deprecated=1
-    export function advertiseUid(ns: number, instance: number, power: number, connectable: boolean) {
-        const buf = pins.createBuffer(16);
-        buf.setNumber(NumberFormat.Int32BE, 6, ns);
-        buf.setNumber(NumberFormat.Int32BE, 12, instance);
-        bluetooth.advertiseUidBuffer(buf, power, connectable);
     }
 }

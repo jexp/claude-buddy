@@ -1,59 +1,10 @@
 // Auto-generated. Do not edit.
 
-
     /**
      * Support for additional Bluetooth services.
      */
     //% color=#0082FB weight=96 icon="\uf294"
 declare namespace bluetooth {
-
-    /**
-     *  Starts the Bluetooth accelerometer service
-     */
-    //% help=bluetooth/start-accelerometer-service
-    //% blockId=bluetooth_start_accelerometer_service block="bluetooth accelerometer service"
-    //% parts="bluetooth" weight=90 blockGap=8 shim=bluetooth::startAccelerometerService
-    function startAccelerometerService(): void;
-
-    /**
-     *  Starts the Bluetooth button service
-     */
-    //% help=bluetooth/start-button-service
-    //% blockId=bluetooth_start_button_service block="bluetooth button service" blockGap=8
-    //% parts="bluetooth" weight=89 shim=bluetooth::startButtonService
-    function startButtonService(): void;
-
-    /**
-     *  Starts the Bluetooth IO pin service.
-     */
-    //% help=bluetooth/start-io-pin-service
-    //% blockId=bluetooth_start_io_pin_service block="bluetooth io pin service" blockGap=8
-    //% parts="bluetooth" weight=88 shim=bluetooth::startIOPinService
-    function startIOPinService(): void;
-
-    /**
-     *  Starts the Bluetooth LED service
-     */
-    //% help=bluetooth/start-led-service
-    //% blockId=bluetooth_start_led_service block="bluetooth led service" blockGap=8
-    //% parts="bluetooth" weight=87 shim=bluetooth::startLEDService
-    function startLEDService(): void;
-
-    /**
-     *  Starts the Bluetooth temperature service
-     */
-    //% help=bluetooth/start-temperature-service
-    //% blockId=bluetooth_start_temperature_service block="bluetooth temperature service" blockGap=8
-    //% parts="bluetooth" weight=86 shim=bluetooth::startTemperatureService
-    function startTemperatureService(): void;
-
-    /**
-     *  Starts the Bluetooth magnetometer service
-     */
-    //% help=bluetooth/start-magnetometer-service
-    //% blockId=bluetooth_start_magnetometer_service block="bluetooth magnetometer service"
-    //% parts="bluetooth" weight=85 shim=bluetooth::startMagnetometerService
-    function startMagnetometerService(): void;
 
     /**
      *  Starts the Bluetooth UART service
@@ -62,6 +13,22 @@ declare namespace bluetooth {
     //% blockId=bluetooth_start_uart_service block="bluetooth uart service"
     //% parts="bluetooth" advanced=true shim=bluetooth::startUartService
     function startUartService(): void;
+
+    /**
+     * Writes to the Bluetooth UART service buffer.
+     */
+    //% help=bluetooth/uart-write-string weight=80
+    //% blockId=bluetooth_uart_write block="bluetooth uart|write string %data" blockGap=8
+    //% parts="bluetooth" shim=bluetooth::uartWriteString advanced=true
+    function uartWriteString(data: string): void;
+
+    /**
+     *  Reads from the Bluetooth UART service buffer until the delimiter.
+     */
+    //% help=bluetooth/uart-read-until weight=75
+    //% blockId=bluetooth_uart_read block="bluetooth uart|read until %del=serial_delimiter_conv"
+    //% parts="bluetooth" shim=bluetooth::uartReadUntil advanced=true
+    function uartReadUntil(del: string): string;
 
     /**
      * Sends a buffer of data via Bluetooth UART
@@ -102,42 +69,13 @@ declare namespace bluetooth {
     function onBluetoothDisconnected(body: () => void): void;
 
     /**
-     * Advertise an Eddystone URL
-     * @param url the url to transmit. Must be no longer than the supported eddystone url length, eg: "https://makecode.com"
-     * @param power power level between 0 and 7, eg: 7
-     * @param connectable true to keep bluetooth connectable for other services, false otherwise.
+     * Sets the BLE GAP device name advertised over Bluetooth.
+     * Name must start with "Claude" for Claude Desktop Hardware Buddy to connect.
+     * @param name the device name to advertise, eg: "Claude mini"
      */
-    //% blockId=eddystone_advertise_url block="bluetooth advertise url %url|with power %power|connectable %connectable"
-    //% parts=bluetooth weight=11 blockGap=8
-    //% help=bluetooth/advertise-url blockExternalInputs=1
-    //% hidden=1 deprecated=1 shim=bluetooth::advertiseUrl
-    function advertiseUrl(url: string, power: int32, connectable: boolean): void;
-
-    /**
-     * Advertise an Eddystone UID
-     * @param nsAndInstance 16 bytes buffer of namespace (bytes 0-9) and instance (bytes 10-15)
-     * @param power power level between 0 and 7, eg: 7
-     * @param connectable true to keep bluetooth connectable for other services, false otherwise.
-     */
-    //% parts=bluetooth weight=12 advanced=true deprecated=1 shim=bluetooth::advertiseUidBuffer
-    function advertiseUidBuffer(nsAndInstance: Buffer, power: int32, connectable: boolean): void;
-
-    /**
-     * Sets the bluetooth transmit power between 0 (minimal) and 7 (maximum).
-     * @param power power level between 0 (minimal) and 7 (maximum), eg: 7.
-     */
-    //% parts=bluetooth weight=5 help=bluetooth/set-transmit-power advanced=true
-    //% blockId=bluetooth_settransmitpower block="bluetooth set transmit power %power" shim=bluetooth::setTransmitPower
-    function setTransmitPower(power: int32): void;
-
-    /**
-     * Stops advertising Eddystone end points
-     */
-    //% blockId=eddystone_stop_advertising block="bluetooth stop advertising"
-    //% parts=bluetooth weight=10
-    //% help=bluetooth/stop-advertising advanced=true
-    //% hidden=1 deprecated=1 shim=bluetooth::stopAdvertising
-    function stopAdvertising(): void;
+    //% blockId=bluetooth_set_device_name block="bluetooth set device name %name"
+    //% parts=bluetooth weight=6 advanced=true shim=bluetooth::setDeviceName
+    function setDeviceName(name: string): void;
 }
 
 // Auto-generated. Do not edit. Really.
