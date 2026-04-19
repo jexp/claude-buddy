@@ -1,7 +1,7 @@
 {
     "name": "claude-buddy",
     "version": "0.0.1",
-    "description": "Connect your Calliope mini or micro:bit to Claude Desktop via Bluetooth. Approve or deny AI tool permissions with physical buttons. Compatible with Calliope mini 2/3 and micro:bit v1/v2.",
+    "description": "Connect your Calliope mini or micro:bit to Claude Desktop via Bluetooth. Approve or deny AI tool permissions with physical buttons.",
     "license": "MIT",
     "dependencies": {
         "core": "*"
@@ -12,21 +12,6 @@
         "bluetooth.cpp",
         "claude-buddy.ts"
     ],
-    "testFiles": [
-        "examples/simple-approve.ts",
-        "examples/status-dashboard.ts",
-        "examples/sound-and-light.ts"
-    ],
-    "fileDependencies": {
-        "_locales/de/claude-buddy-strings.json": "de",
-        "_locales/fr/claude-buddy-strings.json": "fr",
-        "_locales/es/claude-buddy-strings.json": "es",
-        "_locales/nl/claude-buddy-strings.json": "nl",
-        "_locales/it/claude-buddy-strings.json": "it",
-        "_locales/pt/claude-buddy-strings.json": "pt",
-        "_locales/ja/claude-buddy-strings.json": "ja",
-        "_locales/zh-CN/claude-buddy-strings.json": "zh-CN"
-    },
     "public": true,
     "supportedTargets": [
         "calliope3",
