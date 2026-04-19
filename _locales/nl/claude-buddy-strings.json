@@ -1,0 +1,19 @@
+{
+    "claudeBuddy.start|block": "Claude Buddy starten",
+    "claudeBuddy.onConnected|block": "wanneer Claude verbonden",
+    "claudeBuddy.onDisconnected|block": "wanneer Claude verbroken",
+    "claudeBuddy.onHeartbeat|block": "bij Claude hartslag",
+    "claudeBuddy.onPermission|block": "wanneer Claude toestemming vraagt",
+    "claudeBuddy.onTurn|block": "wanneer Claude antwoordt",
+    "claudeBuddy.approve|block": "toestemming geven",
+    "claudeBuddy.deny|block": "toestemming weigeren",
+    "claudeBuddy.pendingTool|block": "wachtend gereedschap",
+    "claudeBuddy.pendingHint|block": "beschrijving van het verzoek",
+    "claudeBuddy.hasPending|block": "toestemming in behandeling?",
+    "claudeBuddy.isConnected|block": "Claude verbonden?",
+    "claudeBuddy.runningTasks|block": "actieve taken",
+    "claudeBuddy.waitingTasks|block": "wachtende taken",
+    "claudeBuddy.tokensToday|block": "tokens vandaag",
+    "claudeBuddy.approvals|block": "goedkeuringen",
+    "claudeBuddy.denials|block": "weigeringen"
+}

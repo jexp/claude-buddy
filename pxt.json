@@ -14,6 +14,11 @@
         "BLEHF2Service.h",
         "claude-buddy.ts"
     ],
+    "testFiles": [
+        "examples/simple-approve.ts",
+        "examples/status-dashboard.ts",
+        "examples/sound-and-light.ts"
+    ],
     "fileDependencies": {
         "_locales/de/claude-buddy-strings.json": "de",
         "_locales/fr/claude-buddy-strings.json": "fr",

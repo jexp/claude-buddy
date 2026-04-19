@@ -1,0 +1,157 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="pxt-on-start" x="0" y="0">
+    <statement name="HANDLER">
+      <block type="claude_buddy_start">
+        <next>
+          <block type="device_show_icon">
+            <field name="i">IconNames.SmallDiamond</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="claude_buddy_on_connected" x="220" y="0">
+    <statement name="HANDLER">
+      <block type="device_show_icon">
+        <field name="i">IconNames.Heart</field>
+      </block>
+    </statement>
+  </block>
+
+  <block type="claude_buddy_on_disconnected" x="440" y="0">
+    <statement name="HANDLER">
+      <block type="device_show_icon">
+        <field name="i">IconNames.SmallDiamond</field>
+      </block>
+    </statement>
+  </block>
+
+  <block type="claude_buddy_on_heartbeat" x="0" y="200">
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <block type="logic_compare">
+            <field name="OP">GT</field>
+            <value name="A"><block type="claude_buddy_waiting"/></value>
+            <value name="B"><block type="math_number"><field name="NUM">0</field></block></value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="device_show_number">
+            <value name="number"><block type="claude_buddy_waiting"/></value>
+          </block>
+        </statement>
+        <mutation elseif="1" else="1"/>
+        <value name="IF1">
+          <block type="logic_compare">
+            <field name="OP">GT</field>
+            <value name="A"><block type="claude_buddy_running"/></value>
+            <value name="B"><block type="math_number"><field name="NUM">0</field></block></value>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="device_show_icon">
+            <field name="i">IconNames.EigthNote</field>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="device_show_icon">
+            <field name="i">IconNames.Heart</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="claude_buddy_on_permission" x="220" y="200">
+    <statement name="HANDLER">
+      <block type="device_show_string">
+        <value name="str"><block type="claude_buddy_pending_tool"/></value>
+        <next>
+          <block type="device_show_string">
+            <value name="str"><block type="claude_buddy_pending_hint"/></value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="claude_buddy_on_turn" x="440" y="200">
+    <statement name="HANDLER">
+      <block type="device_show_icon">
+        <field name="i">IconNames.Diamond</field>
+        <next>
+          <block type="device_pause">
+            <value name="pause"><shadow type="timePicker"><field name="ms">300</field></shadow></value>
+            <next>
+              <block type="device_show_icon">
+                <field name="i">IconNames.Heart</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="device_button_event" x="0" y="460">
+    <field name="NAME">Button.A</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0"><block type="claude_buddy_has_pending"/></value>
+        <statement name="DO0">
+          <block type="claude_buddy_approve">
+            <next>
+              <block type="device_show_icon">
+                <field name="i">IconNames.Yes</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="device_button_event" x="220" y="460">
+    <field name="NAME">Button.B</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0"><block type="claude_buddy_has_pending"/></value>
+        <statement name="DO0">
+          <block type="claude_buddy_deny">
+            <next>
+              <block type="device_show_icon">
+                <field name="i">IconNames.No</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="device_button_event" x="440" y="460">
+    <field name="NAME">Button.AB</field>
+    <statement name="HANDLER">
+      <block type="device_show_string">
+        <value name="str">
+          <block type="text_join">
+            <value name="ADD0"><block type="text"><field name="TEXT">Run </field></block></value>
+            <value name="ADD1"><block type="claude_buddy_running"/></value>
+          </block>
+        </value>
+        <next>
+          <block type="device_show_string">
+            <value name="str">
+              <block type="text_join">
+                <value name="ADD0"><block type="text"><field name="TEXT">Tok </field></block></value>
+                <value name="ADD1"><block type="claude_buddy_tokens"/></value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

@@ -1,0 +1,19 @@
+{
+    "claudeBuddy.start|block": "démarrer Claude Buddy",
+    "claudeBuddy.onConnected|block": "quand Claude connecté",
+    "claudeBuddy.onDisconnected|block": "quand Claude déconnecté",
+    "claudeBuddy.onHeartbeat|block": "au battement de cœur de Claude",
+    "claudeBuddy.onPermission|block": "quand Claude demande permission",
+    "claudeBuddy.onTurn|block": "quand Claude répond",
+    "claudeBuddy.approve|block": "accorder la permission",
+    "claudeBuddy.deny|block": "refuser la permission",
+    "claudeBuddy.pendingTool|block": "outil en attente",
+    "claudeBuddy.pendingHint|block": "description de la demande",
+    "claudeBuddy.hasPending|block": "permission en attente?",
+    "claudeBuddy.isConnected|block": "Claude connecté?",
+    "claudeBuddy.runningTasks|block": "tâches en cours",
+    "claudeBuddy.waitingTasks|block": "tâches en attente",
+    "claudeBuddy.tokensToday|block": "tokens aujourd'hui",
+    "claudeBuddy.approvals|block": "approbations",
+    "claudeBuddy.denials|block": "refus"
+}
