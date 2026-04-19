@@ -28,6 +28,7 @@ namespace claudeBuddy {
 
     // ── Tiny JSON helpers (no JSON.parse in MakeCode) ───────────────────────
     function jStr(json: string, key: string): string {
+        if (!json) return ""
         let s = '"' + key + '":"'
         let i = json.indexOf(s)
         if (i < 0) return ""
@@ -36,6 +37,7 @@ namespace claudeBuddy {
         return j < 0 ? "" : json.substr(i, j - i)
     }
     function jNum(json: string, key: string): number {
+        if (!json) return -1
         let s = '"' + key + '":'
         let i = json.indexOf(s)
         if (i < 0) return -1
@@ -45,12 +47,13 @@ namespace claudeBuddy {
         return parseFloat(json.substr(i, j - i))
     }
     function jHas(json: string, key: string): boolean {
+        if (!json) return false
         return json.indexOf('"' + key + '"') >= 0
     }
 
     // ── Internal message dispatch ───────────────────────────────────────────
     function _handleLine(line: string): void {
-        if (line.length === 0) return
+        if (!line || line.length === 0) return
         if (jHas(line, "time")) return                   // time-sync, ignore
         if (jStr(line, "cmd") === "owner") return        // owner info, ignore
         if (jHas(line, "ack")) return                    // ack, ignore
@@ -89,7 +92,8 @@ namespace claudeBuddy {
             control.raiseEvent(EVT_BASE, EVT_DISCONNECTED)
         })
         bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-            _rxBuf += bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
+            let chunk = bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
+            if (chunk) _rxBuf += chunk
             let nl = _rxBuf.indexOf("\n")
             while (nl >= 0) {
                 let line = _rxBuf.substr(0, nl).trim()
@@ -110,7 +114,7 @@ namespace claudeBuddy {
     //% block="start Claude Buddy"
     //% weight=100 group="Setup"
     export function start(): void {
-        bluetooth.setDeviceName("Claude " + control.deviceName())
+        bluetooth.setDeviceName("Claude " + (control.deviceName() || "mini"))
         _setupHandlers()
         bluetooth.startUartService()
     }
