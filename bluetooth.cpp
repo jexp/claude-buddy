@@ -2,6 +2,8 @@
 #include "MESEvents.h"
 #include "MicroBitUARTService.h"
 #include "BLEHF2Service.h"
+#include "ble.h"
+#include "ble_gap.h"
 
 using namespace pxt;
 
@@ -220,7 +222,10 @@ namespace bluetooth {
     //% parts=bluetooth weight=6 advanced=true
     //% help=bluetooth/set-device-name
     void setDeviceName(String name) {
-        uBit.bleManager.setDeviceName(MSTR(name));
+        ManagedString n = MSTR(name);
+        ble_gap_conn_sec_mode_t perm;
+        BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&perm);
+        sd_ble_gap_device_name_set(&perm, (const uint8_t *)n.toCharArray(), n.length());
     }
 
     /**
